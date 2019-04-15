@@ -1,0 +1,23 @@
+ [
+    {
+      "numero": "1",
+      "nome": "Joao Pereira",
+      "password": "jp",
+      "curso": "LEI",
+      "mail": "jp@mail.com"
+    },
+    {
+      "numero": "2",
+      "nome": "Cesar Pessegatti",
+      "password": "cp",
+      "curso": "LEI",
+      "mail": "cp@mail.com"
+    },
+    {
+      "numero": "3",
+      "nome": "Pedro Casaca",
+      "password": "pc",
+      "curso": "LEI",
+      "mail": "pc@mail.com"
+    }
+  ]
