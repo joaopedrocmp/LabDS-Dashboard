@@ -1,7 +1,142 @@
+{
+  "Numero": "2",
+  "Nome": "Aluno 1",
+  "Password": "pass",
+  "Curso": "LEI",
+  "Mail": "aluno1@mail.com",
+
+  "ListaUcs": [
     {
-      "numero": "2",
-      "nome": "Cesar Pessegatti",
-      "password": "cp",
-      "curso": "LEI",
-      "mail": "cp@mail.com"
+      "Id": "111111",
+      "Nome": "Nome UC 1",
+      "AnoLetivo": "2018/2019",
+      "ListaTopicos": [
+        {
+          "Id": "1",
+          "Nome": "Topico 1",
+          "ListaTarefas": [
+            {
+              "Id": "1",
+              "Nome": "Tarefa 1",
+              "Conclusao": true
+            },
+            {
+              "Id": "2",
+              "Nome": "Tarefa 2",
+              "Conclusao": false
+            },
+            {
+              "Id": "3",
+              "Nome": "Tarefa 3",
+              "Conclusao": false
+            }
+          ]
+        },
+        {
+          "Id": "2",
+          "Nome": "Topico 2",
+          "ListaTarefas": [
+            {
+              "Id": "1",
+              "Nome": "Tarefa 1",
+              "Conclusao": false
+            },
+            {
+              "Id": "2",
+              "Nome": "Tarefa 2",
+              "Conclusao": false
+            }
+          ]
+        },
+        {
+          "Id": "3",
+          "Nome": "Topico 3",
+          "ListaTarefas": [
+            {
+              "Id": "1",
+              "Nome": "Tarefa 1",
+              "Conclusao": false
+            },
+            {
+              "Id": "2",
+              "Nome": "Tarefa 2",
+              "Conclusao": false
+            }
+          ]
+        }
+
+
+
+
+
+      ]
+    },
+    {
+      "Id": "222222",
+      "Nome": "Nome UC 2",
+      "AnoLetivo": "2018/2019",
+      "ListaTopicos": [
+        {
+          "Id": "1",
+          "Nome": "Topico 1",
+          "ListaTarefas": [
+            {
+              "Id": "1",
+              "Nome": "Tarefa 1",
+              "Conclusao": false
+            },
+            {
+              "Id": "2",
+              "Nome": "Tarefa 2",
+              "Conclusao": false
+            },
+            {
+              "Id": "3",
+              "Nome": "Tarefa 3",
+              "Conclusao": false
+            }
+          ]
+        },
+        {
+          "Id": "2",
+          "Nome": "Topico 2",
+          "ListaTarefas": [
+            {
+              "Id": "1",
+              "Nome": "Tarefa 1",
+              "Conclusao": false
+            },
+            {
+              "Id": "2",
+              "Nome": "Tarefa 2",
+              "Conclusao": false
+            }
+          ]
+        },
+        {
+          "Id": "3",
+          "Nome": "Topico 3",
+          "ListaTarefas": [
+            {
+              "Id": "1",
+              "Nome": "Tarefa 1",
+              "Conclusao": false
+            },
+            {
+              "Id": "2",
+              "Nome": "Tarefa 2",
+              "Conclusao": false
+            }
+          ]
+        }
+
+
+
+
+
+      ]
     }
+
+
+  ]
+}
