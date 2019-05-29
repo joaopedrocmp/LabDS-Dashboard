@@ -12,6 +12,8 @@ namespace UabDashboard.Classes
 
         public string Nome { get; set; }
 
+        public string Detalhes { get; set; }
+
         public int Conclusao { get; set; }
     }
 }

@@ -18,6 +18,8 @@ namespace UabDashboard.View
 
         public event EventHandler OnLoadGraph;
 
+        public event EventHandler OnNodeClick;
+
         public Menu()
         {
             InitializeComponent();
@@ -38,6 +40,26 @@ namespace UabDashboard.View
             OnLoadTree?.Invoke(this, EventArgs.Empty);
 
             OnLoadGraph?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TreeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+           
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            OnNodeClick?.Invoke(this, EventArgs.Empty);
         }
     }
 }

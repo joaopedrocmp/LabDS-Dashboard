@@ -42,6 +42,8 @@ namespace UabDashboard
 
             menuView.OnLoadGraph += menuLoadGraph;
 
+            menuView.OnNodeClick += menuNodeClick;
+
             //Eventos Model
             loginModel.OnLoginAttemptedResponse += CheckLoginResponse;
 
@@ -151,12 +153,13 @@ namespace UabDashboard
             List<Color> colorList = new List<Color>();
             colorList = FillColorlist();
 
-            myPane.Title = "Uc Status";
-            myPane.XAxis.Title = "Uc";
+            myPane.Title.Text = "Uc Status";
+            myPane.XAxis.Title.Text = "Uc";
 
-            myPane.YAxis.Title = "Completo";
-            myPane.YAxis.Min = 0;
-            myPane.YAxis.Max = 100;
+            myPane.YAxis.Title.Text = "Completo";
+            //myPane.YAxis. = 0;
+            // myPane.YAxis.Max = 100;
+
             //myPane.XAxis.ScaleFormat.;// .MajorGrid.IsZeroLine = false;
 
             int i = 1;
@@ -208,6 +211,25 @@ namespace UabDashboard
             colorList.Add(Color.Orange);
 
             return colorList;
+        }
+
+        private static void menuNodeClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (menuView.treeView1.SelectedNode.Parent.Parent != null)
+                {
+                    menuView.lbl_nomeTarefa.Text = menuView.treeView1.SelectedNode.Text;
+                    menuView.lbl_topicoNome.Text = menuView.treeView1.SelectedNode.Parent.Text;
+                    menuView.lbl_ucNome.Text = menuView.treeView1.SelectedNode.Parent.Parent.Text;
+                }
+            }
+            catch
+            {
+                menuView.lbl_nomeTarefa.Text = "";
+                menuView.lbl_topicoNome.Text = "";
+                menuView.lbl_ucNome.Text = "";
+            }
         }
     }
 }
