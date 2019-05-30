@@ -28,7 +28,6 @@ namespace UabDashboard
             menuView = new View.Menu();
             loginModel = new LoginModel();
             menuModel = new MenuModel();
-            popup = new Popup();
 
             studentData = new StudentData();
 
@@ -48,6 +47,8 @@ namespace UabDashboard
             loginModel.OnLoginAttemptedResponse += CheckLoginResponse;
 
             menuModel.OnLoadTreeResponse += TreeLoad;
+
+            menuModel.OnGetTarefaResponse += LoadTarefa;
 
             Application.Run(loginView);
         }
@@ -74,6 +75,7 @@ namespace UabDashboard
         {
            if(e.userValidation)
             {
+                popup = new Popup();
                 menuView.Show();
                 loginView.Hide();
                 popup.textBox1.Text = " Bem-vindo !";
@@ -140,9 +142,14 @@ namespace UabDashboard
             }
             catch (Exception ex)
             {
+                popup = new Popup();
                 popup.Show();
                 popup.BringToFront();
-                popup.textBox1.Text = ex.Message;
+                popup.textBox1.Text = "Ups, algo não está bem!" + Environment.NewLine;
+                popup.textBox1.Text += "Erro: -";
+                popup.textBox1.Text += ex.Message + Environment.NewLine;
+                popup.textBox1.Text += "Em: -";
+                popup.textBox1.Text = ex.StackTrace;
             }
         }
 
@@ -219,17 +226,36 @@ namespace UabDashboard
             {
                 if (menuView.treeView1.SelectedNode.Parent.Parent != null)
                 {
-                    menuView.lbl_nomeTarefa.Text = menuView.treeView1.SelectedNode.Text;
-                    menuView.lbl_topicoNome.Text = menuView.treeView1.SelectedNode.Parent.Text;
-                    menuView.lbl_ucNome.Text = menuView.treeView1.SelectedNode.Parent.Parent.Text;
+                    menuModel.GetTarefa(username,menuView.treeView1.SelectedNode.Parent.Parent.Index, 
+                                         menuView.treeView1.SelectedNode.Parent.Index, menuView.treeView1.SelectedNode.Index);
                 }
             }
-            catch
+            catch (NullReferenceException ex)
             {
                 menuView.lbl_nomeTarefa.Text = "";
                 menuView.lbl_topicoNome.Text = "";
-                menuView.lbl_ucNome.Text = "";
+                menuView.lbl_ucNome.Text = "";               
             }
+            catch(Exception ex)
+            {
+                popup = new Popup();
+                popup.Show();
+                popup.BringToFront();
+                popup.textBox1.Text = "Ups, algo não está bem!" + Environment.NewLine;
+                popup.textBox1.Text += "Erro: -";
+                popup.textBox1.Text +=  ex.Message + Environment.NewLine;
+                popup.textBox1.Text += "Em: -";
+                popup.textBox1.Text = ex.StackTrace;
+            }
+        }
+
+        static void LoadTarefa(object sender, GetTarefaResponseHandlerEventArgs e)
+        {
+            menuView.lbl_ucNome.Text = e.nomeUC;
+            menuView.lbl_topicoNome.Text = e.nomeTopico;
+            menuView.lbl_nomeTarefa.Text = e.tarefa.Nome;
+            menuView.lbl_detalhesTarefa.Text = e.tarefa.Detalhes;
+            menuView.txb_conclusao.Text = e.tarefa.Conclusao.ToString();
         }
     }
 }

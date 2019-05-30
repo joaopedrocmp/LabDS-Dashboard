@@ -34,17 +34,18 @@
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.graph = new ZedGraph.ZedGraphControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_topicoNome = new System.Windows.Forms.Label();
+            this.lbl_ucNome = new System.Windows.Forms.Label();
             this.lbl_nomeTarefa = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txb_conclusao = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_uc_name = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.lbl_ucNome = new System.Windows.Forms.Label();
-            this.lbl_topicoNome = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_detalhesTarefa = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,11 +85,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.lbl_detalhesTarefa);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lbl_topicoNome);
             this.panel1.Controls.Add(this.lbl_ucNome);
             this.panel1.Controls.Add(this.lbl_nomeTarefa);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txb_conclusao);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -101,6 +103,34 @@
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(405, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 29);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Detalhes";
+            // 
+            // lbl_topicoNome
+            // 
+            this.lbl_topicoNome.AutoSize = true;
+            this.lbl_topicoNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_topicoNome.Location = new System.Drawing.Point(146, 119);
+            this.lbl_topicoNome.Name = "lbl_topicoNome";
+            this.lbl_topicoNome.Size = new System.Drawing.Size(0, 25);
+            this.lbl_topicoNome.TabIndex = 11;
+            // 
+            // lbl_ucNome
+            // 
+            this.lbl_ucNome.AutoSize = true;
+            this.lbl_ucNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ucNome.Location = new System.Drawing.Point(118, 74);
+            this.lbl_ucNome.Name = "lbl_ucNome";
+            this.lbl_ucNome.Size = new System.Drawing.Size(0, 25);
+            this.lbl_ucNome.TabIndex = 10;
+            // 
             // lbl_nomeTarefa
             // 
             this.lbl_nomeTarefa.AutoSize = true;
@@ -110,13 +140,13 @@
             this.lbl_nomeTarefa.Size = new System.Drawing.Size(0, 25);
             this.lbl_nomeTarefa.TabIndex = 7;
             // 
-            // textBox1
+            // txb_conclusao
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(220, 351);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(76, 30);
-            this.textBox1.TabIndex = 6;
+            this.txb_conclusao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txb_conclusao.Location = new System.Drawing.Point(220, 351);
+            this.txb_conclusao.Name = "txb_conclusao";
+            this.txb_conclusao.Size = new System.Drawing.Size(76, 30);
+            this.txb_conclusao.TabIndex = 6;
             // 
             // label4
             // 
@@ -179,33 +209,14 @@
             this.button1.Text = "Guardar";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // lbl_ucNome
+            // lbl_detalhesTarefa
             // 
-            this.lbl_ucNome.AutoSize = true;
-            this.lbl_ucNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ucNome.Location = new System.Drawing.Point(118, 74);
-            this.lbl_ucNome.Name = "lbl_ucNome";
-            this.lbl_ucNome.Size = new System.Drawing.Size(0, 25);
-            this.lbl_ucNome.TabIndex = 10;
-            // 
-            // lbl_topicoNome
-            // 
-            this.lbl_topicoNome.AutoSize = true;
-            this.lbl_topicoNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_topicoNome.Location = new System.Drawing.Point(146, 119);
-            this.lbl_topicoNome.Name = "lbl_topicoNome";
-            this.lbl_topicoNome.Size = new System.Drawing.Size(0, 25);
-            this.lbl_topicoNome.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(405, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 29);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Detalhes";
+            this.lbl_detalhesTarefa.AutoSize = true;
+            this.lbl_detalhesTarefa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_detalhesTarefa.Location = new System.Drawing.Point(79, 271);
+            this.lbl_detalhesTarefa.Name = "lbl_detalhesTarefa";
+            this.lbl_detalhesTarefa.Size = new System.Drawing.Size(0, 25);
+            this.lbl_detalhesTarefa.TabIndex = 13;
             // 
             // Menu
             // 
@@ -241,10 +252,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_uc_name;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox txb_conclusao;
         public System.Windows.Forms.Label lbl_nomeTarefa;
         public System.Windows.Forms.Label lbl_ucNome;
         public System.Windows.Forms.Label lbl_topicoNome;
-        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label lbl_detalhesTarefa;
     }
 }

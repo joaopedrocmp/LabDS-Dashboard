@@ -22,16 +22,11 @@ namespace UabDashboard.View
             InitializeComponent();
         }
 
-
-
+        
         private void Button1_Click(object sender, EventArgs e)
         {
             OnLoginAttempted?.Invoke(this, EventArgs.Empty);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

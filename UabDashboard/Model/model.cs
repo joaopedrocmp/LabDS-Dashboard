@@ -71,20 +71,31 @@ namespace UabDashboard
 
     public delegate void LoadTreeResponseHandler<Model>(Model sender, LoadTreeResponseHandlerEventArgs e);
 
-    // Argumentos do Model Login
+    public delegate void GetTarefaResponseHandler<Model>(Model sender, GetTarefaResponseHandlerEventArgs e);
+
+    // Argumentos do Model menu
     public class LoadTreeResponseHandlerEventArgs : EventArgs
     {
         public StudentData studentData { get; set; }
     }
 
+    public class GetTarefaResponseHandlerEventArgs : EventArgs
+    {
+        public Tarefa tarefa { get; set; }
+        public string nomeUC { get; set; }
+        public string nomeTopico { get; set; }
+    }
+
+
+
     public class MenuModel
     {
         public event LoadTreeResponseHandler<MenuModel> OnLoadTreeResponse;
 
-        LoadTreeResponseHandlerEventArgs args = new LoadTreeResponseHandlerEventArgs();
-
         public void LoadTree(string username)
         {
+            LoadTreeResponseHandlerEventArgs args = new LoadTreeResponseHandlerEventArgs();
+
             using (StreamReader r = new StreamReader(@"files\" + username + ".json"))
             {
                 string jsonString = r.ReadToEnd();
@@ -99,7 +110,65 @@ namespace UabDashboard
             }
         }
 
-       
+
+
+        public event GetTarefaResponseHandler<MenuModel> OnGetTarefaResponse;
+
+        GetTarefaResponseHandlerEventArgs targs = new GetTarefaResponseHandlerEventArgs();
+
+        public void GetTarefa(string username , int indexUC, int indexTopico, int indexTarefa)
+        {
+            int i = 0;
+            int j;
+            int k;
+            try
+            {
+                using (StreamReader r = new StreamReader(@"files\" + username + ".json"))
+                {
+                    string jsonString = r.ReadToEnd();
+
+                    StudentData studentData = new StudentData();
+
+                    studentData = JsonConvert.DeserializeObject<StudentData>(jsonString);
+
+                    foreach (var uc in studentData.ListaUcs)
+                    {
+                        if (i == indexUC)
+                        {
+                            j = 0;
+                            foreach (var topico in uc.ListaTopicos)
+                            {
+                                if (j == indexTopico)
+                                {
+                                    k = 0;
+                                    foreach (var tarefa in topico.ListaTarefas)
+                                    {
+                                        if (k == indexTarefa)
+                                        {
+                                            targs.nomeUC = uc.Nome;
+                                            targs.nomeTopico = topico.Nome;
+                                            targs.tarefa = tarefa;
+                                            OnGetTarefaResponse.Invoke(this, targs);
+                                        }
+                                        k++;
+                                    }
+                                }
+                                j++;
+                            }
+
+                        }
+                        i++;
+                    }
+
+                }
+            }
+            catch (Exception )
+            {
+                return;
+            }
+
+
+        }
         
     }
     
