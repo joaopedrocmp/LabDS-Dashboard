@@ -31,7 +31,7 @@ namespace UabDashboard
 
         // procura ficheiro com nome do utilizador e verifica o parametro password
          public void CheckUser(string username, string password)
-        {
+         {
             try
             {
                 using (StreamReader r = new StreamReader(@"files\" + username + ".json"))
@@ -59,7 +59,7 @@ namespace UabDashboard
                 args.userValidation = false;
                 OnLoginAttemptedResponse.Invoke(this, args);
             }
-        }
+         }
     }
 
 
@@ -73,6 +73,8 @@ namespace UabDashboard
 
     public delegate void GetTarefaResponseHandler<Model>(Model sender, GetTarefaResponseHandlerEventArgs e);
 
+    public delegate void GuardaDadosResponseHandler<Model>(Model sender, GuardaDadosResponseHandlerEventArgs e);
+
     // Argumentos do Model menu
     public class LoadTreeResponseHandlerEventArgs : EventArgs
     {
@@ -84,8 +86,14 @@ namespace UabDashboard
         public Tarefa tarefa { get; set; }
         public string nomeUC { get; set; }
         public string nomeTopico { get; set; }
+        public long idTopicoAtual { get; set; }
+        public long idUcAtual { get; set; }
     }
 
+    public class GuardaDadosResponseHandlerEventArgs : EventArgs
+    {
+        public bool validation { get; set; }
+    }
 
 
     public class MenuModel
@@ -109,7 +117,6 @@ namespace UabDashboard
                 OnLoadTreeResponse.Invoke(this, args);
             }
         }
-
 
 
         public event GetTarefaResponseHandler<MenuModel> OnGetTarefaResponse;
@@ -148,6 +155,8 @@ namespace UabDashboard
                                             targs.nomeUC = uc.Nome;
                                             targs.nomeTopico = topico.Nome;
                                             targs.tarefa = tarefa;
+                                            targs.idUcAtual = studentData.ListaUcs[i].Id;
+                                            targs.idTopicoAtual = studentData.ListaUcs[i].ListaTopicos[j].Id;
                                             OnGetTarefaResponse.Invoke(this, targs);
                                         }
                                         k++;
@@ -166,11 +175,32 @@ namespace UabDashboard
             {
                 return;
             }
-
-
         }
+
+
+        public event GuardaDadosResponseHandler<MenuModel> OnGuardaDados;
+        GuardaDadosResponseHandlerEventArgs gArgs = new GuardaDadosResponseHandlerEventArgs();
+
+        public void GuardaDados(StudentData studentData)
+        {
+            try
+            {
+                File.WriteAllText(@"files\4.json", JsonConvert.SerializeObject(studentData));
+
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"files\"+ studentData.numero +".json", true))
+                {
+                    file.WriteLine(studentData);
+                }
+
+                gArgs.validation = true;
+            }
+            catch
+            {
+                gArgs.validation = false;
+            }
+            OnGuardaDados(this, gArgs);
+        }
+
         
     }
-    
-
 }

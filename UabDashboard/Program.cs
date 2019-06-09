@@ -19,6 +19,9 @@ namespace UabDashboard
         static MenuModel menuModel;
         static Popup popup;
         static StudentData studentData;
+        static long idTarefaAtual = 0;
+        static long idTopicoAtual = 0;
+        static long idUcAtual = 0;
 
 
         [STAThread]
@@ -43,12 +46,17 @@ namespace UabDashboard
 
             menuView.OnNodeClick += menuNodeClick;
 
+            menuView.OnSaveButtonClick += SaveButtonClick;
+
             //Eventos Model
             loginModel.OnLoginAttemptedResponse += CheckLoginResponse;
 
             menuModel.OnLoadTreeResponse += TreeLoad;
 
             menuModel.OnGetTarefaResponse += LoadTarefa;
+
+            menuModel.OnGuardaDados += GuardaDadosResponse;
+
 
             Application.Run(loginView);
         }
@@ -164,8 +172,8 @@ namespace UabDashboard
             myPane.XAxis.Title.Text = "Uc";
 
             myPane.YAxis.Title.Text = "Completo";
-            //myPane.YAxis. = 0;
-            // myPane.YAxis.Max = 100;
+            myPane.XAxis.IsVisible=false;
+            // myPane.YAxis. = 100;
 
             //myPane.XAxis.ScaleFormat.;// .MajorGrid.IsZeroLine = false;
 
@@ -196,7 +204,7 @@ namespace UabDashboard
                 media = total / listaTarefas.Count;
 
                 ucPairList.Add(new ZedGraph.PointPair { X = i, Y = media });
-                //MessageBox.Show((total / listaTarefas.Count).ToString());  // Debugg
+                // ponto de Debugg
 
                 BarItem ucBar = myPane.AddBar(uc.Id + " - " + uc.Nome, ucPairList, colorList[colorNo]);
                 i+=1;
@@ -256,6 +264,72 @@ namespace UabDashboard
             menuView.lbl_nomeTarefa.Text = e.tarefa.Nome;
             menuView.lbl_detalhesTarefa.Text = e.tarefa.Detalhes;
             menuView.txb_conclusao.Text = e.tarefa.Conclusao.ToString();
+            idTarefaAtual = e.tarefa.Id;
+            idTopicoAtual = e.idTopicoAtual;
+            idUcAtual = e.idUcAtual;
         }
+
+        private static void SaveButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (var uc in studentData.ListaUcs)
+                {
+                    if (uc.Id == idUcAtual)
+                    {
+                        foreach (var topico in uc.ListaTopicos)
+                        {
+                            if (topico.Id == idTopicoAtual)
+                            {
+                                foreach (var tarefa in topico.ListaTarefas)
+                                {
+                                    if (tarefa.Id == idTarefaAtual)
+                                    {
+                                        tarefa.Conclusao = Convert.ToInt32(menuView.txb_conclusao.Text);
+                                        menuModel.GuardaDados(studentData);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                popup = new Popup();
+                popup.Show();
+                popup.BringToFront();
+                popup.textBox1.Text = "Ups, algo não está bem!" + Environment.NewLine;
+                popup.textBox1.Text += "Erro: -";
+                popup.textBox1.Text += ex.Message + Environment.NewLine;
+                popup.textBox1.Text += "Em: -";
+                popup.textBox1.Text = ex.StackTrace;
+            }        
+        }
+
+        static void GuardaDadosResponse(object sender, GuardaDadosResponseHandlerEventArgs e)
+        {
+            if(e.validation)
+            {
+                popup = new Popup();
+                menuView.Show();
+                loginView.Hide();
+                popup.textBox1.Text = "Alterações Guardadas";
+                popup.Show();
+                popup.BringToFront();
+            }
+            else
+            {
+                popup = new Popup();
+                menuView.Show();
+                loginView.Hide();
+                popup.textBox1.Text = "Erro ao guardar alterações";
+                popup.Show();
+                popup.BringToFront();
+            }
+        }
+
+
+
     }
 }

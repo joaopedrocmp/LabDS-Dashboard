@@ -34,6 +34,7 @@
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.graph = new ZedGraph.ZedGraphControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_detalhesTarefa = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_topicoNome = new System.Windows.Forms.Label();
             this.lbl_ucNome = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_uc_name = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.lbl_detalhesTarefa = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +58,6 @@
             this.treeView1.Size = new System.Drawing.Size(513, 739);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1_AfterSelect);
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeView1_NodeMouseClick);
             // 
             // directorySearcher1
             // 
@@ -101,7 +100,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(882, 410);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // lbl_detalhesTarefa
+            // 
+            this.lbl_detalhesTarefa.AutoSize = true;
+            this.lbl_detalhesTarefa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_detalhesTarefa.Location = new System.Drawing.Point(79, 271);
+            this.lbl_detalhesTarefa.Name = "lbl_detalhesTarefa";
+            this.lbl_detalhesTarefa.Size = new System.Drawing.Size(0, 25);
+            this.lbl_detalhesTarefa.TabIndex = 13;
             // 
             // label5
             // 
@@ -157,7 +164,6 @@
             this.label4.Size = new System.Drawing.Size(149, 25);
             this.label4.TabIndex = 5;
             this.label4.Text = "Conclusão (%):";
-            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // label3
             // 
@@ -208,15 +214,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Guardar";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // lbl_detalhesTarefa
-            // 
-            this.lbl_detalhesTarefa.AutoSize = true;
-            this.lbl_detalhesTarefa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_detalhesTarefa.Location = new System.Drawing.Point(79, 271);
-            this.lbl_detalhesTarefa.Name = "lbl_detalhesTarefa";
-            this.lbl_detalhesTarefa.Size = new System.Drawing.Size(0, 25);
-            this.lbl_detalhesTarefa.TabIndex = 13;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Menu
             // 
@@ -231,7 +229,6 @@
             this.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.Text = "Menu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Menu_FormClosed);
-            this.Load += new System.EventHandler(this.Menu_Load);
             this.Shown += new System.EventHandler(this.Menu_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
